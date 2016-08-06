@@ -3,7 +3,7 @@ defmodule Rumbl.UserController do
   alias Rumbl.User
   
   def index(conn, _params) do
-    users = Rumbl.Repo(User)
+    users = Rumbl.Repo.all(User)
     render "index.html", users: users
   end
 end
