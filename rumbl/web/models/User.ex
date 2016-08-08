@@ -1,3 +1,11 @@
 defmodule Rumbl.User do
-  defstruct [:id, :name, :email, :username, :pass]
+  use Rumbl.Web, :model
+
+  schema "users" do
+    field :name, :string
+    field :username, :string
+    field :password, :string, virtual: true
+    field :passwprd_hash, :string
+    timestamps
+  end
 end
