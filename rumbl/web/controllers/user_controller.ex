@@ -6,6 +6,10 @@ defmodule Rumbl.UserController do
     users = Rumbl.Repo.all(User)
     render conn, "index.html", users: users
   end
+  def index2(conn, _params) do
+    users = Rumbl.Repo.all(User)
+    render conn, "index.html", users: users
+  end
 
   def show(conn,  %{"id" => id}) do
     user = Rumbl.Repo.get(User, id)
@@ -17,7 +21,12 @@ defmodule Rumbl.UserController do
     render conn, "new.html", changeset: changeset
   end
 
-  def create(conn, params) do
-    changeset = User.changeset(params)
+  def create(conn, %{"user" => user_params}) do
+    changeset = User.changeset(%User{}, user_params)
+    {:ok, user} = Repo.insert(changeset)
+
+    conn
+      |> put_flash(:info, "#{user.name} has been created!")
+      |> redirect(to: user_path(conn, :index))
   end
 end
