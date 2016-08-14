@@ -2,6 +2,17 @@ defmodule Rumbl.UserController do
   use Rumbl.Web, :controller
   alias Rumbl.User
   
+  def authenticate(conn) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+        |> put_flash(:error, "You must be logged in")
+        |> redirect(to: page_path(conn, :index))
+        |> halt
+    end
+
+  end
   def index(conn, _params) do
     users = Rumbl.Repo.all(User)
     render conn, "index.html", users: users
