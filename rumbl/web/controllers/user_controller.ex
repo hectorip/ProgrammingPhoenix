@@ -11,12 +11,18 @@ defmodule Rumbl.UserController do
         |> redirect(to: page_path(conn, :index))
         |> halt
     end
+  end
 
-  end
   def index(conn, _params) do
-    users = Rumbl.Repo.all(User)
-    render conn, "index.html", users: users
+    case authenticate(conn) do
+      %Plug.Conn{halted: true} = conn ->
+        conn
+      conn ->
+        users = Rumbl.Repo.all(User)
+        render conn, "index.html", users: users
+    end
   end
+
   def index2(conn, _params) do
     users = Rumbl.Repo.all(User)
     render conn, "index.html", users: users
@@ -44,7 +50,6 @@ defmodule Rumbl.UserController do
           |> put_flash(:error, "Check the errors below")
           |> render("new.html", changeset: changeset)
     end
-
-    
   end
+
 end
