@@ -1,8 +1,11 @@
 defmodule Rumbl.UserController do
   use Rumbl.Web, :controller
-  plug :authenticate when action in [:index, :show]
+  plug :authenticate when action in [:index, :show] 
+  # the fucntion authentica receives a conn and an option and
+  # now behaves like a plug
   alias Rumbl.User
   
+  # now this function is a plug, look above
   def authenticate(conn, _opts) do
     if conn.assigns.current_user do
       conn
