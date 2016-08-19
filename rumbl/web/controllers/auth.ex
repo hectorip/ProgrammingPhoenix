@@ -21,5 +21,19 @@ defmodule Rumbl.Auth do
     |> put_session(:user_id, user.id)
     |> configure_session(renew: true) # Renews cookie to avoid atacks
   end
+  def login_by_username_and_pass(conn, username, pass, opts) do
+    repo = Keyword.fetch!(opts, :repo)
+    user = repo.get_by(Rumbl.User, username: username)
+
+    cond do
+      user && checkpw(pass, user.password_hash) ->
+        {:ok, login(conn, user)}
+      user ->
+        {:error, :unauthorized, conn}
+      true ->
+        dummy_checkpw()
+        {:error, :not_found, conn}
+    end
+  end
 
 end
