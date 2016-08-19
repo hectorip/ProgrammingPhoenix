@@ -42,6 +42,7 @@ defmodule Rumbl.UserController do
     case  Repo.insert(changeset) do
       {:ok, user} ->
         conn
+          |> Rumbl.Auth.login(user)
           |> put_flash(:info, "#{user.name} has been created!")
           |> redirect(to: user_path(conn, :index))
       {:error, changeset} ->
