@@ -1,7 +1,7 @@
 defmodule Rumbl.Auth do
 
   import Plug.Conn
-
+  import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
   # A Plug must have a init function that is run at compile time
   def init(opts) do
     Keyword.fetch!(opts, :repo)
