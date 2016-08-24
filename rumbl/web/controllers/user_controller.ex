@@ -1,21 +1,11 @@
 defmodule Rumbl.UserController do
-  use Rumbl.Web, :controller
-  plug :authenticate when action in [:index, :show] 
+  use Rumbl.Web, :controller 
   # the fucntion authentica receives a conn and an option and
   # now behaves like a plug
   alias Rumbl.User
   
   # now this function is a plug, look above
-  def authenticate(conn, _opts) do
-    if conn.assigns.current_user do
-      conn
-    else
-      conn
-        |> put_flash(:error, "You must be logged in")
-        |> redirect(to: page_path(conn, :index))
-        |> halt
-    end
-  end
+
 
   def index(conn, _params) do
     users = Rumbl.Repo.all(User)
