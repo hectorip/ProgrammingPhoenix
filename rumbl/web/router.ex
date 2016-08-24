@@ -22,7 +22,7 @@ defmodule Rumbl.Router do
     resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
-  scope "/admin", Rumb do
+  scope "/admin", Rumbl do
     pipe_through [:browser, :authenticate_user]
     resources "/videos", VideoController
   end
