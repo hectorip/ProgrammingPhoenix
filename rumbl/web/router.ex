@@ -24,6 +24,7 @@ defmodule Rumbl.Router do
 
   scope "/admin", Rumb do
     pipe_through [:browser, :authenticate_user]
+    resources "/videos", VideoController
   end
   # Other scopes may use custom stacks.
   # scope "/api", Rumbl do
