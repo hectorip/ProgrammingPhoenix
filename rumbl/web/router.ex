@@ -22,6 +22,9 @@ defmodule Rumbl.Router do
     resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
+  scope "/admin", Rumb do
+    pipe_through [:browser, :authenticate_user]
+  end
   # Other scopes may use custom stacks.
   # scope "/api", Rumbl do
   #   pipe_through :api
