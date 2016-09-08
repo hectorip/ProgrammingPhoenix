@@ -3,9 +3,9 @@ defmodule Rumbl.VideoController do
 
   alias Rumbl.Video
 
-  def action(conn, ) do
+  def action(conn) do
     apply(__MODULE__, action_name(conn),
-          [conn, conn.params, conn.assigns.current_user]
+          [conn, conn.params, conn.assigns.current_user])
   end
 
   def index(conn, _params, user) do
@@ -38,7 +38,7 @@ defmodule Rumbl.VideoController do
   end
 
   def show(conn, %{"id" => id}, user) do
-    video = Repo.get!(user_videos(user, id)
+    video = Repo.get!(user_videos(user), id)
     render(conn, "show.html", video: video)
   end
 
