@@ -1,10 +1,9 @@
 defmodule Rumbl.VideoController do
-  plug :load_categories when action in [:new, :create, :edit, :update]
   use Rumbl.Web, :controller
-
   alias Rumbl.Video
+  plug :load_categories when action in [:new, :create, :edit, :update]
 
-  def action(conn) do
+  def action(conn, _) do
     apply(__MODULE__, action_name(conn),
           [conn, conn.params, conn.assigns.current_user])
   end
