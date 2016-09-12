@@ -1,5 +1,6 @@
 defmodule Rumbl.VideoController do
   use Rumbl.Web, :controller
+  plug :load_categories when action in [:new, :create, :edit, :update]
 
   alias Rumbl.Video
 
