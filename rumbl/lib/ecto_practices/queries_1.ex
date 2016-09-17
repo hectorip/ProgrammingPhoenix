@@ -21,3 +21,9 @@ Repo.one from u in User,
          where: ilike(u.username, ^"%j") or
                 ilike(u.username, ^"c%")
 
+# Queries con sintaxis de pipe
+
+User |>
+  select([u], count(u.id)) |>
+  where([u], ilike(u.username, ^"j%") or ilike(u.username, ^"c%")) |>
+  Repo.one()
