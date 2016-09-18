@@ -27,3 +27,9 @@ User |>
   select([u], count(u.id)) |>
   where([u], ilike(u.username, ^"j%") or ilike(u.username, ^"c%")) |>
   Repo.one()
+
+# fragments
+
+query = from(u in User,
+  where: fragment("lowe(username) = ?",
+                  ^String.downcase(uname)))
