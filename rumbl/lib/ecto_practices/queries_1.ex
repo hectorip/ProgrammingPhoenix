@@ -37,3 +37,7 @@ query = from(u in User,
 # Raw Queries
 
 query = Ecto.Adapters.SQL.query(Rumbl.Repo, "SELECT power($1, $2)", [2, 10])
+
+# Loading relationships
+user = Repo.one(from u in User, limit: 1)
+user_with_videos = Repo.preload(user, :videos)
