@@ -45,3 +45,13 @@ user_with_videos = Repo.preload(user, :videos)
 # Querying with relationship
 
 user_with_videos =  Repo.one(from u in User, limit: 1, preload: [:videos])
+
+# join
+
+Repo.all from u in User, 
+        join v in assoc(u, :videos),
+        join c in assoc(v, :category),
+        where c.name == "Drama",
+        select {u,v}
+# Constraints
+
