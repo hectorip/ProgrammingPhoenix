@@ -2,6 +2,6 @@ defmodule Rumbl2.PageController do
   use Rumbl2.Web, :controller
 
   def index(conn, _params) do
-    render conn, "index.html"
+    text conn, "Updating myself in this"
   end
 end
