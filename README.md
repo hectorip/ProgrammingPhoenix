@@ -1,6 +1,6 @@
 # Programming Phoenix >= 1.4  Projects
 
-Aprendiendo Phoenix por medio del libro [Programming Phoenix](https://pragprog.com/book/phoenix/programming-phoenix)
+Aprendiendo Phoenix por medio del libro [Programming Phoenix](https://pragprog.com/book/phoenix14/programming-phoenix-1-4)
 
 ## Índice de Ejericicios
 
