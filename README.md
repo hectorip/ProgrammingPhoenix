@@ -6,3 +6,4 @@ Aprendiendo Phoenix por medio del libro [Programming Phoenix](https://pragprog.c
 
 - hello- Hello world app, probando instalación
 - Rumbl - Video Streaming con videos en realtime
+- OTP - Próximamente, siguiendo la guía de los últimos capítulos del libro
